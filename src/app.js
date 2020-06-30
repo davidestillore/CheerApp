@@ -32,33 +32,27 @@ app.setHandler({
   },
 
   async JokeIntent() {
-    const finalJoke = await getJoke();
+    const joke_array = await getJoke();
 
-    this.tell(finalJoke);
+    this.tell(joke_array);
   },
 
 });
-
-function process(joke) {
-  var properties = Object.getOwnPropertyNames(joke);
-var index = Math.floor(Math.random() * properties.length);
-var output = {};
-output[properties[index]] = joke[properties[index]];
-console.log(output);
-  
-  return output
-}
 
 async function getJoke() {
   const options = {
     uri: 'https://us-central1-jokeapp2020.cloudfunctions.net/joke',
     json: true // Automatically parses the JSON string in the response
 };
-  const joke = await requestPromise(options);
-  const randomJoke=process(joke);
-  console.log(randomJoke)
+  const data = await requestPromise(options);
+  var x = Math.floor((Math.random() * 10));
 
-  return randomJoke;
+  const joke = data[x].joke;
+  console.log(data[x].joke);
+  console.log(typeof (data));
+
+  return joke;
+  //EDITED
 }
 
 
