@@ -33,7 +33,6 @@ app.setHandler({
 
   async JokeIntent() {
     const joke_array = await getJoke();
-
     this.tell(joke_array);
   },
 

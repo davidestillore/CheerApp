@@ -1,8 +1,8 @@
 {
-  "invocation": "joke time",
+  "invocation": "tell me a joke",
   "intents": [
     {
-      "name": "QuoteIntent",
+      "name": "TellJoke",
       "phrases": ["tell me a joke", "tell a joke", "joke"]
     }
     
