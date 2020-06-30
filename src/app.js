@@ -32,12 +32,22 @@ app.setHandler({
   },
 
   async JokeIntent() {
-    const joke = await getJoke();
+    const finalJoke = await getJoke();
 
-    this.tell(joke);
+    this.tell(finalJoke);
   },
 
 });
+
+function process(joke) {
+  var properties = Object.getOwnPropertyNames(joke);
+var index = Math.floor(Math.random() * properties.length);
+var output = {};
+output[properties[index]] = joke[properties[index]];
+console.log(output);
+  
+  return output
+}
 
 async function getJoke() {
   const options = {
@@ -45,10 +55,13 @@ async function getJoke() {
     json: true // Automatically parses the JSON string in the response
 };
   const joke = await requestPromise(options);
-  console.log(joke)
+  const randomJoke=process(joke);
+  console.log(randomJoke)
 
-  return joke;
+  return randomJoke;
 }
 
 
 module.exports = { app };
+
+
